@@ -61,9 +61,7 @@ export function FlowerOfLife({
       xmlns="http://www.w3.org/2000/svg"
     >
       <g stroke={color} fill="none" strokeWidth="0.6">
-        {/* Outer containment rings */}
-        <circle cx={cx} cy={cy} r={r * 3.8} strokeWidth="0.4" />
-        <circle cx={cx} cy={cy} r={r * 3.46} strokeWidth="0.3" />
+        {/* Outer containment ring */}
         <circle cx={cx} cy={cy} r={r * 3} strokeWidth="0.4" />
 
         {/* Metatron lines */}

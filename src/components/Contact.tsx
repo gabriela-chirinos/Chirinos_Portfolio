@@ -104,8 +104,15 @@ export default function Contact() {
         rotation: 720, x: 200, y: -240, scale: 0.1, opacity: 0,
         duration: 1.05, ease: 'power2.in',
       })
-      tl.call(() => { setPlaneActive(false); setPhase('done') })
-      tl.to(success, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=0.05')
+      tl.call(() => {
+        setPlaneActive(false)
+        if (success) {
+          success.style.display = 'block'
+          success.style.opacity = '0'
+        }
+      })
+      tl.to(success, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' })
+      tl.call(() => { setPhase('done') })
     }
     run()
   }, [planeActive])
@@ -271,22 +278,23 @@ export default function Contact() {
           {/* ── Right: form / success ── */}
           <div className="lg:w-7/12 reveal relative flex items-center">
 
-            {phase === 'done' && (
-              <div ref={successRef} style={{ opacity: 0, textAlign: 'center', width: '100%' }}>
-                <div className="mx-auto mb-8 rounded-full flex items-center justify-center"
-                  style={{ width: '72px', height: '72px', border: '1px solid rgba(240,196,176,0.3)' }}>
-                  <div style={{ width: '36px', height: '36px' }}>
-                    <PaperPlane color="#F0C4B0" />
-                  </div>
+            <div ref={successRef} style={{
+              textAlign: 'center', width: '100%',
+              display: 'none',
+            }}>
+              <div className="mx-auto mb-8 rounded-full flex items-center justify-center"
+                style={{ width: '72px', height: '72px', border: '1px solid rgba(240,196,176,0.3)' }}>
+                <div style={{ width: '36px', height: '36px' }}>
+                  <PaperPlane color="#F0C4B0" />
                 </div>
-                <p className="playfair-italic mb-3" style={{ fontSize: 'clamp(28px, 3vw, 42px)', color: '#F0C4B0' }}>
-                  Message sent.
-                </p>
-                <p className="font-epilogue" style={{ color: 'rgba(245,240,234,0.5)', fontSize: '15px' }}>
-                  I'll reach out shortly.
-                </p>
               </div>
-            )}
+              <p className="playfair-italic mb-3" style={{ fontSize: 'clamp(28px, 3vw, 42px)', color: '#F0C4B0' }}>
+                Message sent.
+              </p>
+              <p className="font-epilogue" style={{ color: 'rgba(245,240,234,0.5)', fontSize: '15px' }}>
+                I'll reach out shortly.
+              </p>
+            </div>
 
             {phase === 'form' && (
               <form onSubmit={handleSubmit} className="space-y-10 w-full">

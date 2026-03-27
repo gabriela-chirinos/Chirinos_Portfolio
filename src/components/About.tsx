@@ -13,7 +13,7 @@ const bio = [
 const facts = [
   { label: 'Based in',  value: 'United States'        },
   { label: 'Background', value: 'Ops · Data · Amazon · Freelannce Design' },
-  { label: 'Approach',  value: 'Curiousity. Courageous.'  },
+  { label: 'Approach',  value: 'Curiousity. Courage to be disliked.'  },
 ]
 
 export default function About() {

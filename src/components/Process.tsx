@@ -51,13 +51,13 @@ export default function Process() {
     <section
       ref={sectionRef}
       id="process"
-      className="py-24 overflow-hidden"
+      className="py-16 sm:py-24 overflow-hidden"
       style={{ background: '#F5F0EA' }}
     >
-      <div className="max-w-7xl mx-auto px-8 lg:px-16">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-16">
 
         {/* Header */}
-        <div className="reveal text-center mb-16">
+        <div className="reveal text-center mb-12 sm:mb-16">
           <span
             className="block font-epilogue text-xs uppercase tracking-widest mb-4"
             style={{ color: 'rgba(30,45,58,0.4)' }}
@@ -67,7 +67,7 @@ export default function Process() {
           <h2
             className="font-epilogue font-black text-slate-navy"
             style={{
-              fontSize: 'clamp(32px, 4vw, 56px)',
+              fontSize: 'clamp(28px, 4vw, 56px)',
               letterSpacing: '-0.04em',
             }}
           >
@@ -78,11 +78,11 @@ export default function Process() {
           </h2>
         </div>
 
-        {/* Steps + dashed arrows */}
-        <div className="relative flex flex-col md:flex-row items-center justify-center gap-0">
+        {/* Steps — gap-10 on mobile gives breathing room between each step's body <p> and the next circle */}
+        <div className="relative flex flex-col md:flex-row items-center justify-center gap-10 md:gap-0">
 
           {steps.map((step, i) => (
-            <div key={step.number} className="flex flex-col md:flex-row items-center">
+            <div key={step.number} className="flex flex-col md:flex-row items-center w-full md:w-auto">
 
               {/* Step circle */}
               <div
@@ -91,10 +91,10 @@ export default function Process() {
               >
                 {/* Circle */}
                 <div
-                  className="relative flex flex-col items-center justify-center rounded-full mb-6"
+                  className="relative flex flex-col items-center justify-center rounded-full mb-5 sm:mb-6"
                   style={{
-                    width: 'clamp(160px, 18vw, 220px)',
-                    height: 'clamp(160px, 18vw, 220px)',
+                    width: 'clamp(140px, 18vw, 220px)',
+                    height: 'clamp(140px, 18vw, 220px)',
                     border: '1px solid rgba(30,45,58,0.18)',
                   }}
                 >
@@ -112,17 +112,17 @@ export default function Process() {
                   {/* Title */}
                   <span
                     className="font-epilogue font-black text-slate-navy px-4 leading-tight text-center"
-                    style={{ fontSize: 'clamp(13px, 1.2vw, 16px)', letterSpacing: '-0.02em' }}
+                    style={{ fontSize: 'clamp(11px, 1.2vw, 16px)', letterSpacing: '-0.02em' }}
                   >
                     {step.title}
                   </span>
                 </div>
 
-                {/* Body below circle */}
+                {/* Body — pb-2 gives separation from the next circle on mobile */}
                 <p
-                  className="font-epilogue leading-relaxed text-center"
+                  className="font-epilogue leading-relaxed text-center pb-2 md:pb-0"
                   style={{
-                    fontSize: 'clamp(12px, 1vw, 14px)',
+                    fontSize: 'clamp(11px, 1vw, 14px)',
                     color: 'rgba(30,45,58,0.55)',
                     maxWidth: '200px',
                   }}
@@ -131,7 +131,7 @@ export default function Process() {
                 </p>
               </div>
 
-              {/* Dashed arrow connector (between steps, not after last) */}
+              {/* Dashed arrow connector (between steps, desktop only) */}
               {i < steps.length - 1 && (
                 <div
                   className="reveal hidden md:block flex-shrink-0 mx-2"
@@ -143,7 +143,6 @@ export default function Process() {
                     xmlns="http://www.w3.org/2000/svg"
                     className="w-full"
                     style={{
-                      // Alternate curve direction: up for first, down for second
                       transform: i % 2 === 0 ? 'scaleY(-1)' : 'scaleY(1)',
                     }}
                   >
@@ -155,7 +154,6 @@ export default function Process() {
                       strokeLinecap="round"
                       fill="none"
                     />
-                    {/* Arrowhead */}
                     <path
                       d="M90 26 L96 32 L88 34"
                       stroke="#4A7B9D"

@@ -19,7 +19,7 @@ export default function Hero() {
       const pillWrap = pillRef.current
       const pillSpan = pillSpanRef.current
 
-      // Hide via GSAP (not inline JSX style) so the pill is never permanently invisible
+      // Pill is hidden on mobile (md:hidden), so GSAP only fires visually on desktop
       if (pillWrap) gsap.set(pillWrap, { opacity: 0 })
 
       if (pillWrap && pillSpan) {
@@ -30,10 +30,17 @@ export default function Hero() {
         if (pillText) gsap.set(pillText, { opacity: 0 })
 
         gsap.to(pillSpan, {
-          maxWidth: '260px',
+          maxWidth: '400px',
           duration: 0.7,
           delay: 0.5,
           ease: 'power3.out',
+          onComplete: () => {
+            // Remove inline constraints so the pill sits at its natural width
+            if (pillSpanRef.current) {
+              pillSpanRef.current.style.maxWidth = ''
+              pillSpanRef.current.style.overflow = ''
+            }
+          },
         })
 
         if (pillText) {
@@ -75,22 +82,21 @@ export default function Hero() {
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none select-none overflow-hidden"
       >
+        {/* clamp min 56px so ghost letters stay decorative, not dominant, on mobile */}
         <span
-          className="ghost-letter absolute top-[-4%] left-[-2%] font-epilogue font-black leading-none"
+          className="ghost-letter ghost-creative-margin absolute top-[-4%] left-[-2%] font-epilogue font-black leading-none"
           style={{
-            fontSize: 'clamp(120px, 16vw, 280px)',
+            fontSize: 'clamp(56px, 16vw, 280px)',
             color: 'rgba(74, 123, 157, 0.09)',
             letterSpacing: '-0.06em',
-            marginTop: '.15em',
-            marginLeft: '.15em',
           }}
         >
           CREATIVE
         </span>
         <span
-          className="ghost-letter absolute bottom-[-4%] right-[2%] font-epilogue font-black leading-none"
+          className="ghost-letter ghost-developer-bottom absolute right-[2%] font-epilogue font-black leading-none"
           style={{
-            fontSize: 'clamp(120px, 16vw, 280px)',
+            fontSize: 'clamp(56px, 16vw, 280px)',
             color: 'rgba(74, 123, 157, 0.09)',
             letterSpacing: '-0.06em',
           }}
@@ -99,34 +105,66 @@ export default function Hero() {
         </span>
       </div>
 
-      {/* ── Warm blur orbs ── */}
+      {/* ── Warm blur orbs — scaled for mobile ── */}
       <div aria-hidden="true" className="pointer-events-none select-none">
-        <div className="orb" style={{ width: '480px', height: '480px', background: 'rgba(74, 123, 157, 0.14)', top: '-120px', right: '10%' }} />
-        <div className="orb" style={{ width: '360px', height: '360px', background: 'rgba(240, 196, 176, 0.22)', bottom: '5%', left: '-60px' }} />
-        <div className="orb" style={{ width: '280px', height: '280px', background: 'rgba(212, 144, 122, 0.18)', top: '40%', right: '28%' }} />
+        {/* Top-right: hidden on small screens, too dominant at 480px */}
+        <div
+          className="orb hidden sm:block"
+          style={{
+            width: 'clamp(240px, 40vw, 480px)',
+            height: 'clamp(240px, 40vw, 480px)',
+            background: 'rgba(74, 123, 157, 0.14)',
+            top: '-120px',
+            right: '10%',
+          }}
+        />
+        <div
+          className="orb"
+          style={{
+            width: 'clamp(180px, 35vw, 360px)',
+            height: 'clamp(180px, 35vw, 360px)',
+            background: 'rgba(240, 196, 176, 0.22)',
+            bottom: '5%',
+            left: '-60px',
+          }}
+        />
+        {/* Mid orb: hidden on mobile, shows from md */}
+        <div
+          className="orb hidden md:block"
+          style={{
+            width: '280px',
+            height: '280px',
+            background: 'rgba(212, 144, 122, 0.18)',
+            top: '40%',
+            right: '28%',
+          }}
+        />
       </div>
 
-      {/* ── Sacred geometry — far right ── */}
+      {/* ── Sacred geometry — hidden on mobile, shown from md ── */}
       <div
         aria-hidden="true"
-        className="sacred-spin absolute pointer-events-none select-none"
+        className="sacred-spin absolute pointer-events-none select-none hidden md:block"
         style={{
-          right: '30%', top: '10%', transform: 'translateY(50%)',
-          width: 'clamp(420px, 45vw, 700px)', height: 'clamp(420px, 45vw, 700px)',
+          right: '30%',
+          top: '10%',
+          transform: 'translateY(50%)',
+          width: 'clamp(320px, 45vw, 700px)',
+          height: 'clamp(320px, 45vw, 700px)',
         }}
       >
         <FlowerOfLife color="#1E2D3A" opacity={0.07} size={700} className="w-full h-full" />
       </div>
 
       {/* ── Content ── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-16 pt-32 pb-24 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-16 pt-16 sm:pt-28 lg:pt-32 pb-10 lg:pb-24 w-full">
         <div className="max-w-4xl">
 
-          {/* Availability pill — assembles from circle */}
-          <div ref={pillRef} className="mb-10 flex justify-end">
+          {/* ── Desktop pill (md+): expanding animation unchanged ── */}
+          <div ref={pillRef} className="hidden md:flex mb-8 lg:mb-10 justify-end">
             <span
               ref={pillSpanRef}
-              className="pill bg-white/40 px-4 py-2 rounded-full text-sm font-epilogue font-semibold uppercase tracking-widest text-slate-navy inline-flex items-center gap-2 whitespace-nowrap"
+              className="pill bg-white/40 px-3 py-1.5 rounded-full text-xs font-epilogue font-semibold uppercase tracking-widest text-slate-navy inline-flex items-center gap-2 whitespace-nowrap"
             >
               <span
                 className="inline-block w-2 h-2 rounded-full bg-burnt-blush animate-pulse-dot flex-shrink-0"
@@ -136,11 +174,59 @@ export default function Hero() {
             </span>
           </div>
 
+          {/* ── Mobile spinning badge (<md): circular orbital text ── */}
+          <div className="md:hidden mb-6 flex justify-end">
+            <div className="spin-badge-enter" style={{ position: 'relative', width: '92px', height: '92px' }}>
+
+              {/* Spinning ring + orbiting text */}
+              <div className="spin-badge-ring absolute inset-0">
+                <svg viewBox="0 0 92 92" width="92" height="92" aria-hidden="true">
+                  {/* Outer decorative ring */}
+                  <circle cx="46" cy="46" r="43" fill="none"
+                    stroke="rgba(240,196,176,0.25)" strokeWidth="0.6" />
+                  {/* Inner ring */}
+                  <circle cx="46" cy="46" r="37" fill="none"
+                    stroke="rgba(240,196,176,0.15)" strokeWidth="0.4" />
+
+                  {/* Circular text path — starts at 12 o'clock, runs clockwise */}
+                  <defs>
+                    <path id="hero-badge-path"
+                      d="M46,6 A40,40 0 1,1 45.999,6"
+                    />
+                  </defs>
+                  <text
+                    fontSize="7"
+                    fill="#F0C4B0"
+                    fontFamily="var(--font-epilogue)"
+                    fontWeight="700"
+                    letterSpacing="2.8"
+                  >
+                    <textPath href="#hero-badge-path" startOffset="0%">
+                      LET'S CREATE TOGETHER · AVAILABLE ·
+                    </textPath>
+                  </text>
+                </svg>
+              </div>
+
+              {/* Center pulsing dot — does not spin */}
+              <div className="absolute inset-0 flex items-center justify-center" style={{ pointerEvents: 'none' }}>
+                <span
+                  className="block w-2 h-2 rounded-full bg-burnt-blush animate-pulse-dot"
+                  style={{ boxShadow: '0 0 0 5px rgba(212,144,122,0.18)' }}
+                />
+              </div>
+
+            </div>
+          </div>
+
           {/* Main headline */}
-          <div ref={headlineRef} className="mb-6">
+          <div ref={headlineRef} className="mb-4 sm:mb-6">
             <h1
               className="font-epilogue font-black leading-[0.92] text-slate-navy"
-              style={{ fontSize: 'clamp(54px, 7.5vw, 112px)', letterSpacing: '-0.04em' }}
+              style={{
+                fontSize: 'clamp(38px, 7.5vw, 112px)',
+                letterSpacing: '-0.04em',
+              }}
             >
               Grounded
               <br />
@@ -148,7 +234,10 @@ export default function Hero() {
             </h1>
             <p
               className="playfair-italic text-slate-navy leading-tight"
-              style={{ fontSize: 'clamp(48px, 6.5vw, 96px)', letterSpacing: '-0.02em' }}
+              style={{
+                fontSize: 'clamp(32px, 6.5vw, 96px)',
+                letterSpacing: '-0.02em',
+              }}
             >
               driven by design.
             </p>
@@ -157,24 +246,24 @@ export default function Hero() {
           {/* Sub-copy */}
           <p
             ref={subRef}
-            className="font-epilogue text-slate-navy/60 leading-relaxed mb-12 max-w-lg"
-            style={{ fontSize: 'clamp(15px, 1.4vw, 18px)' }}
+            className="font-epilogue text-slate-navy/60 leading-relaxed mb-8 sm:mb-12 max-w-lg"
+            style={{ fontSize: 'clamp(13px, 3.5vw, 18px)' }}
           >
             Frontend developer specialising in beautiful interfaces, scalable
             design systems, and creating curated digital experiences.
           </p>
 
           {/* CTA */}
-          <div ref={ctaRef} className="flex items-center gap-6 flex-wrap">
+          <div ref={ctaRef} className="flex flex-wrap items-center gap-3 sm:gap-6">
             <a
               href="#contact"
-              className="btn-sweep inline-flex items-center gap-3 px-8 py-4 bg-slate-navy text-parchment font-epilogue font-bold uppercase tracking-widest text-sm transition-colors duration-300"
+              className="btn-sweep inline-flex items-center gap-2 px-4 py-2.5 sm:px-8 sm:py-4 bg-slate-navy text-parchment font-epilogue font-bold uppercase tracking-widest text-xs sm:text-sm transition-colors duration-300"
             >
               <span className="relative z-10">Start a Project</span>
             </a>
             <a
               href="#work"
-              className="arrow-link font-epilogue font-bold uppercase tracking-widest text-sm text-slate-navy/70 hover:text-slate-navy transition-colors flex items-center gap-2"
+              className="arrow-link font-epilogue font-bold uppercase tracking-widest text-xs sm:text-sm text-slate-navy/70 hover:text-slate-navy transition-colors flex items-center gap-2"
             >
               View Work <span className="arrow">→</span>
             </a>
@@ -184,9 +273,9 @@ export default function Hero() {
       </div>
 
       {/* ── Scroll indicator ── */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+      <div className="absolute bottom-8 sm:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
         <span className="font-epilogue text-xs uppercase tracking-widest text-slate-navy">Scroll</span>
-        <div className="w-px h-12 bg-slate-navy/40" />
+        <div className="w-px h-10 sm:h-12 bg-slate-navy/40" />
       </div>
     </section>
   )

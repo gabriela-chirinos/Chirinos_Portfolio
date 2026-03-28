@@ -55,6 +55,44 @@ html {
   color: transparent;
 }
 
+/* Mobile: bring CREATIVE into view; desktop: keep it cropped at the edge */
+.ghost-creative-margin {
+  margin-top: 1.7em;
+  margin-left: .15em;
+}
+@media (min-width: 768px) {
+  .ghost-creative-margin {
+    margin-top: .15em;
+  }
+}
+
+/* ── Mobile spinning circular badge ── */
+@keyframes spin-cw {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.spin-badge-ring {
+  animation: spin-cw 14s linear infinite;
+  transform-origin: center center;
+}
+@keyframes badge-appear {
+  from { opacity: 0; transform: scale(0.82); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.spin-badge-enter {
+  animation: badge-appear 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+}
+
+/* DEVELOPER: fully visible on mobile, cropped off-bottom on desktop */
+.ghost-developer-bottom {
+  bottom: 2%;
+}
+@media (min-width: 768px) {
+  .ghost-developer-bottom {
+    bottom: -4%;
+  }
+}
+
 /* ─── CTA Button sweep ─── */
 .btn-sweep {
   position: relative;
@@ -250,6 +288,21 @@ html {
 .corner-tr { border-top-width: 2px;    border-right-width: 2px; }
 .corner-br { border-bottom-width: 2px; border-right-width: 2px; }
 .corner-bl { border-bottom-width: 2px; border-left-width: 2px;  }
+
+/* ─── Work card corner brackets hover ─── */
+.visual-bracket {
+  transition: border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.work-item:hover .visual-bracket {
+  border-color: rgba(245,240,234,0.7) !important;
+}
+
+/* ─── Work backplate responsive width (applied at sm+) ─── */
+@media (min-width: 640px) {
+  .backplate-sm-width {
+    width: clamp(300px, 38%, 480px);
+  }
+}
 
 /* ─── Contact grid overlay ─── */
 .contact-grid {

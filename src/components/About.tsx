@@ -12,7 +12,7 @@ const bio = [
 
 const facts = [
   { label: 'Based in',  value: 'United States'        },
-  { label: 'Background', value: 'Ops · Data · Amazon · Freelannce Design' },
+  { label: 'Background', value: 'Ops · Data · Amazon · Freelance Design' },
   { label: 'Approach',  value: 'Curiousity. Courage to be disliked.'  },
 ]
 
@@ -45,13 +45,13 @@ export default function About() {
     <section
       ref={sectionRef}
       id="about"
-      className="py-32 overflow-hidden"
+      className="py-14 sm:py-24 lg:py-32 overflow-hidden"
       style={{ background: '#F5F0EA' }}
     >
-      <div className="max-w-7xl mx-auto px-8 lg:px-16">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-16">
 
         {/* Section label */}
-        <div className="reveal flex items-center gap-6 mb-20">
+        <div className="reveal flex items-center gap-6 mb-8 sm:mb-14 lg:mb-20">
           <span
             className="font-epilogue text-xs uppercase tracking-widest"
             style={{ color: 'rgba(30,45,58,0.4)' }}
@@ -62,15 +62,15 @@ export default function About() {
         </div>
 
         {/* Two-column layout */}
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
+        <div className="flex flex-col md:flex-row gap-10 sm:gap-14 md:gap-16 lg:gap-24">
 
           {/* ── Left: photo + facts ── */}
-          <div className="lg:w-5/12 flex flex-col gap-10">
+          <div className="md:w-5/12 lg:w-5/12 flex flex-col gap-8 sm:gap-10">
 
             {/* Photo */}
             <div
               className="reveal relative"
-              style={{ aspectRatio: '4/5', maxWidth: '420px' }}
+              style={{ aspectRatio: '4/5', maxWidth: '380px' }}
               onMouseEnter={() => setHovered(true)}
               onMouseLeave={() => setHovered(false)}
             >
@@ -80,19 +80,18 @@ export default function About() {
                 style={{
                   inset: 0,
                   background: '#4A7B9D',
-                  transform: 'translate(16px, 16px)',
+                  transform: 'translate(12px, 12px)',
                   zIndex: 0,
                   transition: 'transform 0.5s cubic-bezier(0.16,1,0.3,1)',
-                  ...(hovered ? { transform: 'translate(22px, 22px)' } : {}),
+                  ...(hovered ? { transform: 'translate(18px, 18px)' } : {}),
                 }}
               />
 
-              {/* Image container — isolate stacking context for blend modes */}
+              {/* Image container */}
               <div
                 className="relative z-10 w-full h-full overflow-hidden"
                 style={{ background: '#1E2D3A', isolation: 'isolate' }}
               >
-                {/* The photo */}
                 <Image
                   src="/gabby.jpg"
                   alt="Gabriela Chirinos"
@@ -109,7 +108,7 @@ export default function About() {
                   }}
                 />
 
-                {/* Duotone colour wash — sits above the photo */}
+                {/* Duotone colour wash */}
                 <div
                   className="absolute inset-0 pointer-events-none"
                   style={{
@@ -126,7 +125,7 @@ export default function About() {
                   }}
                 />
 
-                {/* Grain texture on top */}
+                {/* Grain texture */}
                 <div
                   className="absolute inset-0 pointer-events-none"
                   style={{
@@ -138,7 +137,7 @@ export default function About() {
                   }}
                 />
 
-                {/* Fallback monogram if image fails */}
+                {/* Fallback monogram */}
                 {!imgLoaded && (
                   <div className="absolute inset-0 flex items-center justify-center" style={{ zIndex: 0 }}>
                     <span className="font-playfair" style={{
@@ -174,7 +173,7 @@ export default function About() {
             {/* Facts */}
             <ul className="reveal space-y-0 border-l" style={{ borderColor: 'rgba(30,45,58,0.15)' }}>
               {facts.map(f => (
-                <li key={f.label} className="px-6 py-4 flex justify-between items-baseline">
+                <li key={f.label} className="px-5 sm:px-6 py-3 sm:py-4 flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 sm:gap-4">
                   <span
                     className="font-epilogue font-black uppercase tracking-widest"
                     style={{ fontSize: '10px', color: 'rgba(30,45,58,0.4)', letterSpacing: '0.18em' }}
@@ -183,7 +182,7 @@ export default function About() {
                   </span>
                   <span
                     className="font-epilogue font-semibold"
-                    style={{ fontSize: '14px', color: '#1E2D3A' }}
+                    style={{ fontSize: '13px', color: '#1E2D3A' }}
                   >
                     {f.value}
                   </span>
@@ -194,14 +193,14 @@ export default function About() {
           </div>
 
           {/* ── Right: bio ── */}
-          <div className="lg:w-7/12 flex flex-col justify-center gap-0">
+          <div className="md:w-7/12 lg:w-7/12 flex flex-col justify-center gap-0">
 
             {/* Name + title */}
-            <div className="reveal mb-12">
+            <div className="reveal mb-6 sm:mb-10 lg:mb-12">
               <h2
                 className="font-epilogue font-black leading-none text-slate-navy"
                 style={{
-                  fontSize: 'clamp(48px, 6vw, 88px)',
+                  fontSize: 'clamp(30px, 6vw, 88px)',
                   letterSpacing: '-0.04em',
                 }}
               >
@@ -210,7 +209,7 @@ export default function About() {
               <p
                 className="playfair-italic mt-1"
                 style={{
-                  fontSize: 'clamp(20px, 2vw, 28px)',
+                  fontSize: 'clamp(16px, 2vw, 28px)',
                   color: '#D4907A',
                   letterSpacing: '-0.01em',
                 }}
@@ -220,15 +219,15 @@ export default function About() {
             </div>
 
             {/* Bio paragraphs */}
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {bio.map((para, i) => (
                 <p
                   key={i}
                   className="reveal font-epilogue leading-relaxed"
                   style={{
                     fontSize: i === 0
-                      ? 'clamp(18px, 1.8vw, 24px)'
-                      : 'clamp(15px, 1.3vw, 17px)',
+                      ? 'clamp(14px, 1.8vw, 24px)'
+                      : 'clamp(12px, 1.3vw, 17px)',
                     color: i === 0
                       ? '#1E2D3A'
                       : 'rgba(30,45,58,0.65)',
@@ -241,10 +240,10 @@ export default function About() {
             </div>
 
             {/* CTA row */}
-            <div className="reveal mt-12 flex items-center gap-6 flex-wrap">
+            <div className="reveal mt-8 sm:mt-12 flex flex-wrap items-center gap-4 sm:gap-6">
               <a
                 href="#work"
-                className="btn-sweep inline-flex items-center gap-3 px-8 py-4 bg-slate-navy text-parchment font-epilogue font-bold uppercase tracking-widest text-sm"
+                className="btn-sweep inline-flex items-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 bg-slate-navy text-parchment font-epilogue font-bold uppercase tracking-widest text-sm"
               >
                 <span className="relative z-10">See My Work</span>
               </a>

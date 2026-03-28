@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useCallback, useMemo } from 'react'
+import { useEffect, useRef, useCallback, useMemo, useState } from 'react'
 
 interface TargetCursorProps {
   targetSelector?: string
@@ -25,13 +25,14 @@ export default function TargetCursor({
   const tickerFnRef              = useRef<(() => void) | null>(null)
   const activeStrengthRef        = useRef({ current: 0 })
 
-  const isMobile = useMemo(() => {
-    if (typeof window === 'undefined') return false
-    const hasTouchScreen   = 'ontouchstart' in window || navigator.maxTouchPoints > 0
-    const isSmallScreen    = window.innerWidth <= 768
-    const mobileRegex      = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i
-    const isMobileUA       = mobileRegex.test((navigator.userAgent || '').toLowerCase())
-    return (hasTouchScreen && isSmallScreen) || isMobileUA
+  // Detect mobile after mount to avoid SSR hydration mismatch
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const hasTouchScreen = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+    const isSmallScreen  = window.innerWidth <= 768
+    const mobileRegex    = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i
+    const isMobileUA     = mobileRegex.test((navigator.userAgent || '').toLowerCase())
+    setIsMobile((hasTouchScreen && isSmallScreen) || isMobileUA)
   }, [])
 
   const constants = useMemo(() => ({ borderWidth: 3, cornerSize: 12 }), [])

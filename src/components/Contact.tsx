@@ -55,10 +55,10 @@ function FishingHook({ color = '#F0C4B0' }: { color?: string }) {
 // ──────────────────────────────────────────────────────────────────────────
 
 export default function Contact() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const planeRef   = useRef<HTMLDivElement>(null)
-  const successRef = useRef<HTMLDivElement>(null)
-  const hookRef    = useRef<HTMLDivElement>(null)
+  const sectionRef    = useRef<HTMLElement>(null)
+  const planeRef      = useRef<HTMLDivElement>(null)
+  const successRef    = useRef<HTMLDivElement>(null)
+  const hookRef       = useRef<HTMLDivElement>(null)
 
   const [phase,       setPhase]       = useState<'form' | 'done'>('form')
   const [planeActive, setPlaneActive] = useState(false)
@@ -234,34 +234,60 @@ export default function Contact() {
       {/* ── Target cursor — activates only on .cursor-target elements ── */}
       <TargetCursor targetSelector=".cursor-target" spinDuration={2.5} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-16 w-full pt-24 pb-16 flex flex-col flex-1">
+      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-16 w-full pt-14 sm:pt-20 lg:pt-24 pb-12 lg:pb-16 flex flex-col flex-1">
 
         {/* Eyebrow */}
-        <div className="reveal mb-10">
-          <p className="playfair-italic" style={{ fontSize: 'clamp(18px, 1.8vw, 24px)', color: '#F0C4B0' }}>
+        <div className="reveal mb-6 sm:mb-10">
+          <p className="playfair-italic" style={{ fontSize: 'clamp(15px, 1.8vw, 24px)', color: '#F0C4B0' }}>
             Got an idea? Need some spark?
           </p>
         </div>
 
         {/* Two-column */}
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 flex-1">
+        <div className="flex flex-col md:flex-row gap-10 sm:gap-14 md:gap-16 lg:gap-24 flex-1">
 
           {/* ── Left ── */}
-          <div className="lg:w-5/12 flex flex-col justify-between">
+          <div className="md:w-5/12 lg:w-5/12 flex flex-col justify-between gap-6 sm:gap-0">
             <h2 className="reveal reach-out font-epilogue font-black leading-none text-dusty-blush"
-              style={{ fontSize: 'clamp(64px, 9vw, 140px)', letterSpacing: '-0.05em' }}>
+              style={{ fontSize: 'clamp(44px, 9vw, 140px)', letterSpacing: '-0.05em' }}>
               Let's<br />Chat.
             </h2>
 
-            <div className="reveal mt-12 space-y-6">
-              <span className="pill bg-white/5 px-5 py-2.5 rounded-full text-sm font-epilogue font-semibold uppercase tracking-widest text-parchment inline-flex">
-                <span className="inline-block w-2 h-2 rounded-full animate-pulse-dot"
-                  style={{ background: '#D4907A', boxShadow: '0 0 0 4px rgba(212,144,122,0.2)' }} />
-                Available — Open to New Work
-              </span>
+            <div className="reveal mt-6 sm:mt-12 space-y-4 sm:space-y-6">
+              {/* Looping availability ticker */}
+              <div className="overflow-hidden py-1 w-full" aria-label="Availability status">
+                <div
+                  style={{
+                    display: 'flex',
+                    width: 'max-content',
+                    animation: 'marquee 16s linear infinite',
+                  }}
+                >
+                  {Array.from({ length: 8 }).map((_, i) => (
+                    <span
+                      key={i}
+                      className="inline-flex items-center flex-shrink-0"
+                      style={{
+                        paddingRight: '28px',
+                        fontSize: '9px',
+                        letterSpacing: '0.22em',
+                        color: '#F0C4B0',
+                        fontFamily: 'var(--font-epilogue)',
+                        fontWeight: 700,
+                        textTransform: 'uppercase',
+                        whiteSpace: 'nowrap',
+                        gap: '8px',
+                      }}
+                    >
+                      <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#D4907A', display: 'inline-block', flexShrink: 0 }} />
+                      Available · Open to New Work
+                    </span>
+                  ))}
+                </div>
+              </div>
 
-              {/* Drop me a line — hook animation + opens native email */}
-              <div>
+              {/* Drop me a line — hidden on mobile */}
+              <div className="hidden sm:block">
                 <button
                   onClick={() => setHookActive(true)}
                   disabled={hookActive || planeActive}
@@ -276,7 +302,7 @@ export default function Contact() {
           </div>
 
           {/* ── Right: form / success ── */}
-          <div className="lg:w-7/12 reveal relative flex items-center">
+          <div className="md:w-7/12 lg:w-7/12 reveal relative flex items-center">
 
             <div ref={successRef} style={{
               textAlign: 'center', width: '100%',
@@ -365,7 +391,7 @@ export default function Contact() {
 
       {/* ── Footer ── */}
       <footer className="relative z-10 border-t" style={{ borderColor: 'rgba(74,123,157,0.15)' }}>
-        <div className="max-w-7xl mx-auto px-8 lg:px-16 py-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-16 py-6 sm:py-8 flex items-center justify-center sm:justify-between">
           <span className="font-epilogue text-xs uppercase tracking-widest"
             style={{ color: 'rgba(245,240,234,0.3)' }}>
             © {new Date().getFullYear()} Gabriela Chirinos. All rights reserved.

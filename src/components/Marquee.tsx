@@ -46,7 +46,7 @@ export default function Marquee() {
 
   return (
     <div
-      className="w-full overflow-hidden py-5"
+      className="w-full overflow-hidden py-3 sm:py-5"
       style={{ background: '#1E2D3A' }}
       aria-hidden="true"
     >

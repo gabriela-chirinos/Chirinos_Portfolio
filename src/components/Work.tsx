@@ -392,10 +392,10 @@ function MobileCard({ project }: { project: (typeof projects)[0] }) {
           <span className="font-epilogue font-black text-sm" style={{ color: 'rgba(245,240,234,0.15)', letterSpacing: '-0.04em' }}>{project.id}</span>
         </div>
         <div className="my-5 sm:my-8">
-          <h3 className="font-epilogue font-black leading-tight text-parchment" style={{ fontSize: 'clamp(22px, 3vw, 40px)', letterSpacing: '-0.04em' }}>{project.title}</h3>
-          <p className="playfair-italic" style={{ fontSize: 'clamp(18px, 2.5vw, 32px)', color: 'rgba(245,240,234,0.7)' }}>{project.titleItalic}</p>
+          <h3 className="font-epilogue font-black leading-tight text-parchment" style={{ fontSize: 'clamp(24px, 3vw, 40px)', letterSpacing: '-0.04em' }}>{project.title}</h3>
+          <p className="playfair-italic" style={{ fontSize: 'clamp(20px, 2.5vw, 32px)', color: 'rgba(245,240,234,0.7)' }}>{project.titleItalic}</p>
         </div>
-        <p className="font-epilogue leading-relaxed mb-5 sm:mb-8" style={{ fontSize: 'clamp(12px, 1.1vw, 15px)', color: 'rgba(245,240,234,0.65)' }}>{project.description}</p>
+        <p className="font-epilogue leading-relaxed mb-5 sm:mb-8" style={{ fontSize: 'clamp(13px, 1.1vw, 15px)', color: 'rgba(245,240,234,0.65)' }}>{project.description}</p>
         <div className="flex flex-wrap gap-2 mb-6">
           {project.tags.map(tag => (
             <span key={tag} className="px-3 py-1 text-xs font-epilogue font-semibold uppercase tracking-wider rounded-sm"
@@ -445,7 +445,7 @@ export default function Work() {
             <span className="block font-epilogue text-xs uppercase tracking-widest mb-3 sm:mb-4"
               style={{ color: 'rgba(30,45,58,0.4)' }}>Work</span>
             <h2 className="font-epilogue font-black leading-tight text-slate-navy"
-              style={{ fontSize: 'clamp(28px, 5vw, 72px)', letterSpacing: '-0.04em' }}>
+              style={{ fontSize: 'clamp(31px, 5vw, 72px)', letterSpacing: '-0.04em' }}>
               Projects that{' '}
               <span className="playfair-italic">have inspired me</span>
             </h2>
@@ -459,7 +459,7 @@ export default function Work() {
       {/* ── Mobile / tablet cards (< lg) — inside container ── */}
       <div className="lg:hidden max-w-7xl mx-auto px-5 sm:px-8">
         <div className="flex flex-col gap-10 sm:gap-16">
-          {projects.map((project, i) => (
+          {projects.map((project) => (
             <MobileCard key={project.id} project={project} />
           ))}
         </div>

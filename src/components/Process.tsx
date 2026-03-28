@@ -67,7 +67,7 @@ export default function Process() {
           <h2
             className="font-epilogue font-black text-slate-navy"
             style={{
-              fontSize: 'clamp(28px, 4vw, 56px)',
+              fontSize: 'clamp(31px, 4vw, 56px)',
               letterSpacing: '-0.04em',
             }}
           >
@@ -102,7 +102,7 @@ export default function Process() {
                   <span
                     className="font-epilogue font-black mb-2"
                     style={{
-                      fontSize: '13px',
+                      fontSize: '14px',
                       color: '#D4907A',
                       letterSpacing: '0.06em',
                     }}
@@ -112,7 +112,7 @@ export default function Process() {
                   {/* Title */}
                   <span
                     className="font-epilogue font-black text-slate-navy px-4 leading-tight text-center"
-                    style={{ fontSize: 'clamp(11px, 1.2vw, 16px)', letterSpacing: '-0.02em' }}
+                    style={{ fontSize: 'clamp(13px, 1.2vw, 16px)', letterSpacing: '-0.02em' }}
                   >
                     {step.title}
                   </span>
@@ -122,7 +122,7 @@ export default function Process() {
                 <p
                   className="font-epilogue leading-relaxed text-center pb-2 md:pb-0"
                   style={{
-                    fontSize: 'clamp(11px, 1vw, 14px)',
+                    fontSize: 'clamp(13px, 1vw, 14px)',
                     color: 'rgba(30,45,58,0.55)',
                     maxWidth: '200px',
                   }}

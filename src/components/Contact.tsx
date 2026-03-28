@@ -195,7 +195,7 @@ export default function Contact() {
     borderBottom: '1px solid rgba(74,123,157,0.35)',
     color: '#F5F0EA', outline: 'none', width: '100%',
     padding: '10px 0', fontFamily: 'var(--font-epilogue)',
-    fontSize: '15px', transition: 'border-color 0.25s ease',
+    fontSize: '16px', transition: 'border-color 0.25s ease',
   }
 
   return (
@@ -238,7 +238,7 @@ export default function Contact() {
 
         {/* Eyebrow */}
         <div className="reveal mb-6 sm:mb-10">
-          <p className="playfair-italic" style={{ fontSize: 'clamp(15px, 1.8vw, 24px)', color: '#F0C4B0' }}>
+          <p className="playfair-italic" style={{ fontSize: 'clamp(17px, 1.8vw, 24px)', color: '#F0C4B0' }}>
             Got an idea? Need some spark?
           </p>
         </div>
@@ -249,7 +249,7 @@ export default function Contact() {
           {/* ── Left ── */}
           <div className="md:w-5/12 lg:w-5/12 flex flex-col justify-between gap-6 sm:gap-0">
             <h2 className="reveal reach-out font-epilogue font-black leading-none text-dusty-blush"
-              style={{ fontSize: 'clamp(44px, 9vw, 140px)', letterSpacing: '-0.05em' }}>
+              style={{ fontSize: 'clamp(48px, 9vw, 140px)', letterSpacing: '-0.05em' }}>
               Let's<br />Chat.
             </h2>
 
@@ -327,7 +327,7 @@ export default function Contact() {
 
                 <div>
                   <label className="block font-epilogue font-black uppercase tracking-widest mb-3"
-                    style={{ fontSize: '10px', color: 'rgba(245,240,234,0.4)', letterSpacing: '0.18em' }}>
+                    style={{ fontSize: '11px', color: 'rgba(245,240,234,0.4)', letterSpacing: '0.18em' }}>
                     Your Name
                   </label>
                   <input type="text" required placeholder="Jane Smith"
@@ -339,7 +339,7 @@ export default function Contact() {
 
                 <div>
                   <label className="block font-epilogue font-black uppercase tracking-widest mb-3"
-                    style={{ fontSize: '10px', color: 'rgba(245,240,234,0.4)', letterSpacing: '0.18em' }}>
+                    style={{ fontSize: '11px', color: 'rgba(245,240,234,0.4)', letterSpacing: '0.18em' }}>
                     Your Email
                   </label>
                   <input type="email" required placeholder="jane@company.com"
@@ -352,7 +352,7 @@ export default function Contact() {
                 <div>
                   <div className="flex justify-between items-baseline mb-3">
                     <label className="block font-epilogue font-black uppercase tracking-widest"
-                      style={{ fontSize: '10px', color: 'rgba(245,240,234,0.4)', letterSpacing: '0.18em' }}>
+                      style={{ fontSize: '11px', color: 'rgba(245,240,234,0.4)', letterSpacing: '0.18em' }}>
                       What are you building?
                     </label>
                     <span className="font-epilogue text-xs tabular-nums"

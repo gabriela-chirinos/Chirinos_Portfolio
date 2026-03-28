@@ -137,7 +137,7 @@ export default function Stack() {
           <div className="reveal mb-10">
             <p
               className="font-epilogue font-black uppercase tracking-widest mb-5"
-              style={{ fontSize: '11px', color: 'rgba(245,240,234,0.45)', letterSpacing: '0.2em' }}
+              style={{ fontSize: '12px', color: 'rgba(245,240,234,0.45)', letterSpacing: '0.2em' }}
             >
               What I build with
             </p>
@@ -167,7 +167,7 @@ export default function Stack() {
           <div className="reveal">
             <p
               className="font-epilogue font-black uppercase tracking-widest mb-5"
-              style={{ fontSize: '11px', color: 'rgba(245,240,234,0.45)', letterSpacing: '0.2em' }}
+              style={{ fontSize: '12px', color: 'rgba(245,240,234,0.45)', letterSpacing: '0.2em' }}
             >
               What I also bring
             </p>
@@ -194,7 +194,7 @@ export default function Stack() {
         <div className="md:hidden">
           <p
             className="font-epilogue font-black uppercase tracking-widest mb-5"
-            style={{ fontSize: '11px', color: 'rgba(245,240,234,0.45)', letterSpacing: '0.2em' }}
+            style={{ fontSize: '12px', color: 'rgba(245,240,234,0.45)', letterSpacing: '0.2em' }}
           >
             What I build with
           </p>
@@ -202,7 +202,7 @@ export default function Stack() {
             {buildWith.map((item) => (
               <span
                 key={item}
-                className="mobile-circle font-epilogue font-semibold text-xs text-center px-4 py-4 rounded-full"
+                className="mobile-circle font-epilogue font-semibold text-[13px] text-center px-4 py-4 rounded-full"
                 data-variant="primary"
                 style={{
                   border: '1px solid transparent',
@@ -222,7 +222,7 @@ export default function Stack() {
 
           <p
             className="font-epilogue font-black uppercase tracking-widest mb-5"
-            style={{ fontSize: '11px', color: 'rgba(245,240,234,0.45)', letterSpacing: '0.2em' }}
+            style={{ fontSize: '12px', color: 'rgba(245,240,234,0.45)', letterSpacing: '0.2em' }}
           >
             What I also bring
           </p>
@@ -230,7 +230,7 @@ export default function Stack() {
             {alsoMring.map((item) => (
               <span
                 key={item}
-                className="mobile-circle font-epilogue font-semibold text-xs text-center px-4 py-4 rounded-full"
+                className="mobile-circle font-epilogue font-semibold text-[13px] text-center px-4 py-4 rounded-full"
                 data-variant="secondary"
                 style={{
                   border: '1px solid transparent',

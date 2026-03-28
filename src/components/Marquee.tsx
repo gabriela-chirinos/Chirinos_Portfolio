@@ -19,7 +19,7 @@ function MarqueeItem({ text, filled }: { text: string; filled: boolean }) {
       <span
         className="font-epilogue font-black uppercase tracking-widest px-8 py-1"
         style={{
-          fontSize: 'clamp(13px, 1.1vw, 15px)',
+          fontSize: 'clamp(14px, 1.1vw, 16px)',
           letterSpacing: '0.18em',
           color: filled ? '#F5F0EA' : 'transparent',
           WebkitTextStroke: filled ? 'none' : '1px #F5F0EA',

@@ -106,7 +106,7 @@ export default function Philosophy() {
           <h2
             className="font-epilogue font-black leading-[0.9] text-parchment"
             style={{
-              fontSize: 'clamp(32px, 6vw, 96px)',
+              fontSize: 'clamp(35px, 6vw, 96px)',
               letterSpacing: '-0.04em',
             }}
           >
@@ -115,7 +115,7 @@ export default function Philosophy() {
           <p
             className="playfair-italic"
             style={{
-              fontSize: 'clamp(26px, 5.2vw, 84px)',
+              fontSize: 'clamp(29px, 5.2vw, 84px)',
               color: '#F0C4B0',
               letterSpacing: '-0.02em',
             }}
@@ -128,7 +128,7 @@ export default function Philosophy() {
         <p
           className="reveal font-epilogue leading-relaxed mb-10 sm:mb-16 lg:mb-24 max-w-2xl"
           style={{
-            fontSize: 'clamp(13px, 1.3vw, 18px)',
+            fontSize: 'clamp(15px, 1.3vw, 18px)',
             color: 'rgba(245,240,234,0.6)',
           }}
         >
@@ -158,7 +158,7 @@ export default function Philosophy() {
               <h3
                 className="font-epilogue font-black uppercase text-parchment mb-3 sm:mb-5"
                 style={{
-                  fontSize: 'clamp(13px, 1.5vw, 20px)',
+                  fontSize: 'clamp(14px, 1.5vw, 20px)',
                   letterSpacing: '0.06em',
                 }}
               >
@@ -169,7 +169,7 @@ export default function Philosophy() {
               <p
                 className="font-epilogue leading-relaxed"
                 style={{
-                  fontSize: 'clamp(12px, 1.1vw, 15px)',
+                  fontSize: 'clamp(13px, 1.1vw, 15px)',
                   color: 'rgba(245,240,234,0.55)',
                 }}
               >

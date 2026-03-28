@@ -182,7 +182,7 @@ export default function About() {
                   </span>
                   <span
                     className="font-epilogue font-semibold"
-                    style={{ fontSize: '13px', color: '#1E2D3A' }}
+                    style={{ fontSize: '14px', color: '#1E2D3A' }}
                   >
                     {f.value}
                   </span>
@@ -200,7 +200,7 @@ export default function About() {
               <h2
                 className="font-epilogue font-black leading-none text-slate-navy"
                 style={{
-                  fontSize: 'clamp(30px, 6vw, 88px)',
+                  fontSize: 'clamp(33px, 6vw, 88px)',
                   letterSpacing: '-0.04em',
                 }}
               >
@@ -209,7 +209,7 @@ export default function About() {
               <p
                 className="playfair-italic mt-1"
                 style={{
-                  fontSize: 'clamp(16px, 2vw, 28px)',
+                  fontSize: 'clamp(18px, 2vw, 28px)',
                   color: '#D4907A',
                   letterSpacing: '-0.01em',
                 }}
@@ -226,8 +226,8 @@ export default function About() {
                   className="reveal font-epilogue leading-relaxed"
                   style={{
                     fontSize: i === 0
-                      ? 'clamp(14px, 1.8vw, 24px)'
-                      : 'clamp(12px, 1.3vw, 17px)',
+                      ? 'clamp(16px, 1.8vw, 24px)'
+                      : 'clamp(13px, 1.3vw, 17px)',
                     color: i === 0
                       ? '#1E2D3A'
                       : 'rgba(30,45,58,0.65)',

@@ -224,7 +224,7 @@ export default function Hero() {
             <h1
               className="font-epilogue font-black leading-[0.92] text-slate-navy"
               style={{
-                fontSize: 'clamp(38px, 7.5vw, 112px)',
+                fontSize: 'clamp(42px, 7.5vw, 112px)',
                 letterSpacing: '-0.04em',
               }}
             >
@@ -235,7 +235,7 @@ export default function Hero() {
             <p
               className="playfair-italic text-slate-navy leading-tight"
               style={{
-                fontSize: 'clamp(32px, 6.5vw, 96px)',
+                fontSize: 'clamp(35px, 6.5vw, 96px)',
                 letterSpacing: '-0.02em',
               }}
             >
@@ -247,7 +247,7 @@ export default function Hero() {
           <p
             ref={subRef}
             className="font-epilogue text-slate-navy/60 leading-relaxed mb-8 sm:mb-12 max-w-lg"
-            style={{ fontSize: 'clamp(13px, 3.5vw, 18px)' }}
+            style={{ fontSize: 'clamp(15px, 3.5vw, 18px)' }}
           >
             Frontend developer specialising in beautiful interfaces, scalable
             design systems, and creating curated digital experiences.

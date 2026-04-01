@@ -304,6 +304,18 @@ html {
   }
 }
 
+/* ─── Pricing card CTA (dark variant) ─── */
+.pricing-btn-outline {
+  transition: background 0.35s cubic-bezier(0.76, 0, 0.24, 1),
+              color 0.35s cubic-bezier(0.76, 0, 0.24, 1),
+              border-color 0.35s ease;
+}
+.pricing-btn-outline:hover {
+  background: #F0C4B0;
+  color: #1E2D3A;
+  border-color: #F0C4B0;
+}
+
 /* ─── Contact grid overlay ─── */
 .contact-grid {
   background-image:

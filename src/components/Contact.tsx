@@ -29,40 +29,13 @@ function PaperPlane({ color = '#F0C4B0' }: { color?: string }) {
   )
 }
 
-// ── Fishing hook (email button) ────────────────────────────────────────────
-function FishingHook({ color = '#F0C4B0' }: { color?: string }) {
-  return (
-    <svg viewBox="0 0 80 180" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-      {/* Fishing line — dashed, drops from top */}
-      <line id="hook-line" x1="40" y1="0" x2="40" y2="108" stroke={color} strokeWidth="1" strokeDasharray="5 3" />
-      {/* Small hook eye at top */}
-      <circle cx="40" cy="4" r="4" stroke={color} strokeWidth="1" fill="none" />
-      {/* Hook shaft */}
-      <line x1="40" y1="108" x2="40" y2="138" stroke={color} strokeWidth="2" strokeLinecap="round" />
-      {/* Hook curve (J bend) */}
-      <path d="M40 138 C40 162 68 162 68 144" stroke={color} strokeWidth="2" strokeLinecap="round" fill="none" />
-      {/* Barb point */}
-      <path d="M68 144 L60 152" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
-      {/* Glint on hook */}
-      <circle cx="54" cy="154" r="1.5" fill={color} opacity="0.5" />
-      {/* Lure body */}
-      <ellipse cx="40" cy="122" rx="6" ry="10" stroke={color} strokeWidth="1" fill="none" opacity="0.5" />
-      {/* Lure stripe */}
-      <line x1="34" y1="122" x2="46" y2="122" stroke={color} strokeWidth="0.8" opacity="0.4" />
-    </svg>
-  )
-}
-// ──────────────────────────────────────────────────────────────────────────
-
 export default function Contact() {
   const sectionRef    = useRef<HTMLElement>(null)
   const planeRef      = useRef<HTMLDivElement>(null)
   const successRef    = useRef<HTMLDivElement>(null)
-  const hookRef       = useRef<HTMLDivElement>(null)
 
   const [phase,       setPhase]       = useState<'form' | 'done'>('form')
   const [planeActive, setPlaneActive] = useState(false)
-  const [hookActive,  setHookActive]  = useState(false)
   const [error,       setError]       = useState('')
   const [form,        setForm]        = useState({ name: '', email: '', message: '' })
 
@@ -116,47 +89,6 @@ export default function Contact() {
     }
     run()
   }, [planeActive])
-
-  // ── Fishing hook animation (Drop me a line button) ──────────────────────
-  useEffect(() => {
-    if (!hookActive) return
-    const run = async () => {
-      const { gsap } = await import('gsap')
-      const hook = hookRef.current
-      if (!hook) return
-
-      // Reset: start above viewport, invisible
-      gsap.set(hook, { opacity: 0, y: -120, x: 0, rotation: 0, scaleY: 0.3 })
-
-      const tl = gsap.timeline()
-
-      // 1. Drop in from top
-      tl.to(hook, { opacity: 1, y: 0, scaleY: 1, duration: 0.6, ease: 'power2.out' })
-
-      // 2. Gentle sway — like the hook is dangling on a line
-      tl.to(hook, { rotation:  12, x:  14, duration: 0.4, ease: 'sine.inOut' })
-      tl.to(hook, { rotation: -10, x: -12, duration: 0.4, ease: 'sine.inOut' })
-      tl.to(hook, { rotation:   6, x:   8, duration: 0.3, ease: 'sine.inOut' })
-      tl.to(hook, { rotation:  -4, x:  -5, duration: 0.3, ease: 'sine.inOut' })
-      tl.to(hook, { rotation:   0, x:   0, duration: 0.2, ease: 'sine.out'   })
-
-      // 3. Nibble — quick jerk down, like a bite
-      tl.to(hook, { y: 18,  duration: 0.08, ease: 'power4.out' })
-      tl.to(hook, { y:  0,  duration: 0.12, ease: 'power2.inOut' })
-      tl.to(hook, { y: 12,  duration: 0.08, ease: 'power4.out' })
-      tl.to(hook, { y:  0,  duration: 0.1,  ease: 'power2.inOut' })
-
-      // 4. Got one! Reel up fast
-      tl.to(hook, {
-        y: -280, opacity: 0, scaleY: 0.4, rotation: -20,
-        duration: 0.55, ease: 'power3.in',
-      })
-
-      // 5. Open email and reset
-      tl.call(() => { openMailto(); setHookActive(false) })
-    }
-    run()
-  }, [hookActive])
 
   // ── Form submit ─────────────────────────────────────────────────────────
   const handleSubmit = async (e: React.FormEvent) => {
@@ -218,19 +150,6 @@ export default function Contact() {
         </div>
       )}
 
-      {/* ── Fishing hook — section-level, email button trigger only ── */}
-      {hookActive && (
-        <div ref={hookRef} style={{
-          position: 'absolute', top: '50%', left: '50%',
-          transform: 'translate(-50%,-50%)',
-          width: '140px', height: '300px', zIndex: 50,
-          opacity: 0, pointerEvents: 'none',
-          transformOrigin: 'top center',
-        }}>
-          <FishingHook color="#F0C4B0" />
-        </div>
-      )}
-
       {/* ── Target cursor — activates only on .cursor-target elements ── */}
       <TargetCursor targetSelector=".cursor-target" spinDuration={2.5} />
 
@@ -286,18 +205,6 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Drop me a line — hidden on mobile */}
-              <div className="hidden sm:block">
-                <button
-                  onClick={() => setHookActive(true)}
-                  disabled={hookActive || planeActive}
-                  className="cursor-target btn-sweep inline-flex items-center gap-3 px-8 py-4 border font-epilogue font-bold uppercase tracking-widest text-sm text-parchment transition-colors duration-300"
-                  style={{ borderColor: 'rgba(74,123,157,0.4)', opacity: hookActive ? 0.5 : 1 }}
-                  aria-label="Open email client"
-                >
-                  <span className="relative z-10">Drop me a line →</span>
-                </button>
-              </div>
             </div>
           </div>
 
@@ -377,7 +284,7 @@ export default function Contact() {
                   <p className="font-epilogue text-sm" style={{ color: '#D4907A' }}>{error}</p>
                 )}
 
-                <button type="submit" disabled={planeActive || hookActive}
+                <button type="submit" disabled={planeActive}
                   className="btn-sweep w-full py-4 font-epilogue font-bold uppercase tracking-widest text-sm text-parchment"
                   style={{ background: 'rgba(74,123,157,0.25)', border: '1px solid rgba(74,123,157,0.4)' }}>
                   <span className="relative z-10">Send Message</span>

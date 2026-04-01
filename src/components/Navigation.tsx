@@ -6,8 +6,9 @@ import Logo from './Logo'
 const navLinks = [
   { label: 'Work',       href: '#work',       num: '01' },
   { label: 'Philosophy', href: '#philosophy',  num: '02' },
-  { label: 'Stack',      href: '#stack',       num: '03' },
-  { label: 'Contact',    href: '#contact',     num: '04' },
+  { label: 'Pricing',    href: '#pricing',     num: '03' },
+  { label: 'Stack',      href: '#stack',       num: '04' },
+  { label: 'Contact',    href: '#contact',     num: '05' },
 ]
 
 export default function Navigation() {

@@ -3,33 +3,6 @@
 import { useEffect, useRef } from 'react'
 import { HexGeometry } from './SacredGeometry'
 
-const pillars = [
-  {
-    number: '01',
-    name: 'Craft Over Speed',
-    body:
-      'Every pixel is a decision. Rushed work ships technical debt; deliberate work ships clarity. The difference is in the details.',
-  },
-  {
-    number: '02',
-    name: 'Systems Thinking',
-    body:
-      'Components are words in a language. Designing  better systems, keeps it simple and beutiful.',
-  },
-  {
-    number: '03',
-    name: 'Motion With Intent',
-    body:
-      'Animation earns its place or it doesn\'t. Every transition communicates something. Decorative motion is just noise in a better outfit.',
-  },
-  {
-    number: '04',
-    name: 'Code as Material',
-    body:
-      'The browser is a creative medium. Constraints aren\'t limitations — they\'re the material. Learning the material deeply changes what\'s possible.',
-  },
-]
-
 export default function Philosophy() {
   const sectionRef = useRef<HTMLElement>(null)
 
@@ -126,58 +99,15 @@ export default function Philosophy() {
 
         {/* Body copy */}
         <p
-          className="reveal font-epilogue leading-relaxed mb-10 sm:mb-16 lg:mb-24 max-w-2xl"
+          className="reveal font-epilogue leading-relaxed max-w-2xl"
           style={{
             fontSize: 'clamp(15px, 1.3vw, 18px)',
             color: 'rgba(245,240,234,0.6)',
           }}
         >
-          Good frontend work sits at the intersection of good structure and
-          creative instinct. Building the scaffolding so that your magic has
+          Building the scaffolding so that your magic has
           somewhere to live.
         </p>
-
-        {/* 2×2 pillar grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-2 md:gap-px">
-          {pillars.map((pillar, i) => (
-            <div
-              key={pillar.number}
-              className={`pillar-card reveal p-6 sm:p-8 lg:p-12 ${
-                i === 1 ? 'md:mt-16' : ''
-              } ${i === 3 ? 'md:mt-16' : ''}`}
-            >
-              {/* Number */}
-              <span
-                className="block font-mono text-sm mb-4 sm:mb-6"
-                style={{ color: '#D4907A' }}
-              >
-                {pillar.number}
-              </span>
-
-              {/* Name */}
-              <h3
-                className="font-epilogue font-black uppercase text-parchment mb-3 sm:mb-5"
-                style={{
-                  fontSize: 'clamp(14px, 1.5vw, 20px)',
-                  letterSpacing: '0.06em',
-                }}
-              >
-                {pillar.name}
-              </h3>
-
-              {/* Body */}
-              <p
-                className="font-epilogue leading-relaxed"
-                style={{
-                  fontSize: 'clamp(13px, 1.1vw, 15px)',
-                  color: 'rgba(245,240,234,0.55)',
-                }}
-              >
-                {pillar.body}
-              </p>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   )

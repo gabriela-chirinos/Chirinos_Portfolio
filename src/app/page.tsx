@@ -4,6 +4,7 @@ import Marquee from '@/components/Marquee'
 import About from '@/components/About'
 import Work from '@/components/Work'
 import Philosophy from '@/components/Philosophy'
+import Pricing from '@/components/Pricing'
 import Stack from '@/components/Stack'
 import Process from '@/components/Process'
 import Contact from '@/components/Contact'
@@ -15,9 +16,10 @@ export default function Home() {
       <Hero />
       <Marquee />
       <Philosophy />
-       <Work />
-      <Stack />
+      <Pricing />
       <Process />
+      <Work />
+      <Stack />
       <About />
       <Contact />
     </main>

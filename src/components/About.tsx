@@ -11,7 +11,7 @@ const bio = [
 ]
 
 const facts = [
-  { label: 'Based in',  value: 'United States'        },
+  { label: 'Based in',  value: 'Lakewood, WA'          },
   { label: 'Background', value: 'Ops · Data · Amazon · Freelance Design' },
   { label: 'Approach',  value: 'Curiousity. Courage to be disliked.'  },
 ]

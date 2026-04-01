@@ -220,7 +220,7 @@ export default function Pricing() {
                 <p
                   className="playfair-italic mb-4"
                   style={{
-                    fontSize: 'clamp(13px, 1.05vw, 15px)',
+                    fontSize: 'clamp(14px, 1.05vw, 15px)',
                     color: pkg.dark ? '#F0C4B0' : '#D4907A',
                     letterSpacing: '-0.01em',
                   }}
@@ -232,7 +232,7 @@ export default function Pricing() {
                 <p
                   className="font-epilogue leading-relaxed mb-7"
                   style={{
-                    fontSize: 'clamp(12px, 1vw, 14px)',
+                    fontSize: 'clamp(14px, 1vw, 14px)',
                     color: pkg.dark
                       ? 'rgba(245,240,234,0.48)'
                       : 'rgba(30,45,58,0.5)',
@@ -284,7 +284,7 @@ export default function Pricing() {
                       key={item}
                       className="flex items-start gap-3 font-epilogue"
                       style={{
-                        fontSize: 'clamp(12px, 1vw, 13px)',
+                        fontSize: 'clamp(13px, 1vw, 13px)',
                         color: pkg.dark
                           ? 'rgba(245,240,234,0.62)'
                           : 'rgba(30,45,58,0.62)',

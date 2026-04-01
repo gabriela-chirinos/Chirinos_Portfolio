@@ -40,7 +40,7 @@ export default function Philosophy() {
     <section
       ref={sectionRef}
       id="philosophy"
-      className="relative overflow-hidden py-5 sm:py-24 lg:py-32"
+      className="relative overflow-hidden py-16 sm:py-24 lg:py-32"
       style={{ background: '#1E2D3A' }}
     >
       {/* ── Sacred geometry background ── */}
@@ -101,7 +101,7 @@ export default function Philosophy() {
         <p
           className="reveal font-epilogue leading-relaxed max-w-2xl"
           style={{
-            fontSize: 'clamp(15px, 1.3vw, 18px)',
+            fontSize: 'clamp(16px, 1.3vw, 18px)',
             color: 'rgba(245,240,234,0.6)',
           }}
         >

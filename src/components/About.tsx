@@ -227,7 +227,7 @@ export default function About() {
                   style={{
                     fontSize: i === 0
                       ? 'clamp(16px, 1.8vw, 24px)'
-                      : 'clamp(13px, 1.3vw, 17px)',
+                      : 'clamp(15px, 1.3vw, 17px)',
                     color: i === 0
                       ? '#1E2D3A'
                       : 'rgba(30,45,58,0.65)',

@@ -129,7 +129,16 @@ export default function Navigation() {
         <div className="max-w-7xl mx-auto px-8 lg:px-16 h-20 flex items-center justify-between">
 
           {/* Logo */}
-          <a href="#hero" className="block" aria-label="Gabriela Chirinos — Home">
+          <a
+            href="#"
+            className="block"
+            aria-label="Gabriela Chirinos — Home"
+            onClick={(e) => {
+              e.preventDefault()
+              if (isOpen) closeMenu()
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
+          >
             <Logo
               size={44}
               color={isOpen ? '#F0C4B0' : scrolled ? '#F0C4B0' : '#1E2D3A'}

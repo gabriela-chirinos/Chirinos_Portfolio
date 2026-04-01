@@ -249,8 +249,7 @@ export default function Hero() {
             className="font-epilogue text-slate-navy/60 leading-relaxed mb-8 sm:mb-12 max-w-lg"
             style={{ fontSize: 'clamp(15px, 3.5vw, 18px)' }}
           >
-            Frontend developer building clean, beautiful websites for solopreneurs
-            and local businesses.
+           I design clean, thoughtful digital experiences for solopreneurs and local businesses ready to stand out.
           </p>
 
           {/* CTA */}

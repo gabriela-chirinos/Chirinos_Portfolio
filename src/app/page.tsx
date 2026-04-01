@@ -8,6 +8,7 @@ import Pricing from '@/components/Pricing'
 import Stack from '@/components/Stack'
 import Process from '@/components/Process'
 import Contact from '@/components/Contact'
+import BackToTop from '@/components/BackToTop'
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <Stack />
       <About />
       <Contact />
+      <BackToTop />
     </main>
   )
 }

@@ -11,7 +11,7 @@ const bio = [
 ]
 
 const facts = [
-  { label: 'Based in',  value: 'Lakewood, WA'          },
+  { label: 'Based in',  value: 'Washington'          },
   { label: 'Background', value: 'Ops · Data · Amazon · Freelance Design' },
   { label: 'Approach',  value: 'Curiousity. Courage to be disliked.'  },
 ]
@@ -93,7 +93,7 @@ export default function About() {
                 style={{ background: '#1E2D3A', isolation: 'isolate' }}
               >
                 <Image
-                  src="/gabby.jpg"
+                  src="/headshot.jpg"
                   alt="Gabriela Chirinos"
                   fill
                   className="object-cover object-center"

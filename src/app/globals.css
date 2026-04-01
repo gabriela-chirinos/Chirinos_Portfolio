@@ -59,10 +59,12 @@ html {
 .ghost-creative-margin {
   margin-top: 1.7em;
   margin-left: .15em;
+  transform: translateY(60px);
 }
 @media (min-width: 768px) {
   .ghost-creative-margin {
     margin-top: .15em;
+    transform: none;
   }
 }
 
@@ -86,10 +88,12 @@ html {
 /* DEVELOPER: fully visible on mobile, cropped off-bottom on desktop */
 .ghost-developer-bottom {
   bottom: 2%;
+  transform: translateY(-80px);
 }
 @media (min-width: 768px) {
   .ghost-developer-bottom {
     bottom: -4%;
+    transform: none;
   }
 }
 

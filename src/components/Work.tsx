@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const projects = [
   {
@@ -17,8 +17,8 @@ const projects = [
     visualBg: 'linear-gradient(135deg, #0e1d29 0%, #1E2D3A 28%, #2a4a61 65%, #4A7B9D 100%)',
     align: 'left' as const,
     year: '2026',
-    url: 'https://github.com/gabriela-chirinos/Lustro_Project' as string | null,
-    ctaLabel: 'View on GitHub',
+    url: 'https://lustroshoecare.netlify.app/' as string | null,
+    ctaLabel: 'View Site',
   },
   {
     id: '02',
@@ -168,6 +168,43 @@ const illustrations = {
   '03': ObsidianIllustration,
 }
 
+// ── Live site preview (scaled iframe) ────────────────────────────────────────
+function LivePreview({ url }: { url: string }) {
+  const wrapRef = useRef<HTMLDivElement>(null)
+  const [scale, setScale] = useState(0.35)
+
+  useEffect(() => {
+    const calc = () => {
+      if (!wrapRef.current) return
+      const { width } = wrapRef.current.getBoundingClientRect()
+      setScale(Math.max(0.22, width / 1440))
+    }
+    calc()
+    window.addEventListener('resize', calc)
+    return () => window.removeEventListener('resize', calc)
+  }, [])
+
+  return (
+    <div ref={wrapRef} className="absolute inset-0 overflow-hidden">
+      <iframe
+        src={url}
+        style={{
+          width: '1440px',
+          height: '900px',
+          transform: `scale(${scale})`,
+          transformOrigin: 'top left',
+          pointerEvents: 'none',
+          border: 'none',
+          display: 'block',
+        }}
+        loading="lazy"
+        tabIndex={-1}
+        aria-hidden="true"
+      />
+    </div>
+  )
+}
+
 // ── Desktop full-bleed card ───────────────────────────────────────────────────
 function DesktopCard({ project }: { project: (typeof projects)[number] }) {
   const isRight = project.align === 'right'
@@ -193,28 +230,39 @@ function DesktopCard({ project }: { project: (typeof projects)[number] }) {
       style={{ minHeight: '640px', cursor: project.url ? 'pointer' : 'default' }}
       onClick={() => project.url && window.open(project.url, '_blank', 'noopener,noreferrer')}
     >
-      {/* ── Full-bleed background gradient ── */}
+      {/* ── Base gradient (always present as fallback) ── */}
       <div className="absolute inset-0" style={{ background: project.visualBg }} />
 
-      {/* ── Scanlines across entire card ── */}
+      {/* ── Live site preview ── */}
+      {project.url ? (
+        <LivePreview url={project.url} />
+      ) : (
+        <>
+          {/* ── SVG illustration — only for cards without a live URL ── */}
+          <div
+            className="absolute inset-y-0 pointer-events-none"
+            style={{ [isRight ? 'left' : 'right']: 0, width: '55%', opacity: 0.9 }}
+          >
+            <Illustration />
+          </div>
+        </>
+      )}
+
+      {/* ── Colour tint so iframe blends with brand palette ── */}
+      {project.url && (
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: `${project.scrimColor}55`, mixBlendMode: 'multiply' }}
+        />
+      )}
+
+      {/* ── Scanlines ── */}
       <div className="absolute inset-0 pointer-events-none"
         style={{ backgroundImage: 'repeating-linear-gradient(0deg, rgba(0,0,0,0.04) 0px, rgba(0,0,0,0.04) 1px, transparent 1px, transparent 5px)' }} />
 
       {/* ── Fine grid ── */}
       <div className="absolute inset-0 pointer-events-none"
         style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)', backgroundSize: '52px 52px' }} />
-
-      {/* ── SVG illustration — positioned to the visual side ── */}
-      <div
-        className="absolute inset-y-0 pointer-events-none"
-        style={{
-          [isRight ? 'left' : 'right']: 0,
-          width: '55%',
-          opacity: 0.9,
-        }}
-      >
-        <Illustration />
-      </div>
 
       {/* ── Gradient scrim — text side ── */}
       <div className="absolute inset-0 pointer-events-none" style={{ background: scrimGradient }} />
@@ -384,20 +432,33 @@ function MobileCard({ project }: { project: (typeof projects)[number] }) {
       {/* Visual panel */}
       <div className="work-visual relative w-full sm:flex-1 min-h-[200px] sm:min-h-[380px] md:min-h-[460px]">
         <div className="work-visual-inner absolute inset-0" style={{ background: project.visualBg }}>
-          <div className="absolute inset-0 opacity-[0.07]"
-            style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-          <span className="absolute bottom-4 right-5 sm:bottom-6 sm:right-8 font-epilogue font-black leading-none select-none"
-            style={{ fontSize: 'clamp(60px, 10vw, 120px)', color: '#F5F0EA', opacity: 0.1, letterSpacing: '-0.06em' }}>
-            {project.id}
-          </span>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="flex flex-col items-center gap-2" style={{ opacity: 0.14 }}>
-              <div style={{ width: 'clamp(80px, 12vw, 140px)', height: '2px', background: 'rgba(245,240,234,0.9)', borderRadius: '1px' }} />
-              <div style={{ width: 'clamp(60px, 9vw, 100px)', height: '1px', background: 'rgba(245,240,234,0.7)', borderRadius: '1px' }} />
-              <div style={{ width: 'clamp(40px, 6vw, 70px)',  height: '1px', background: 'rgba(245,240,234,0.5)', borderRadius: '1px' }} />
-              <div className="mt-1" style={{ width: 'clamp(44px, 7vw, 80px)', height: 'clamp(28px, 4vw, 48px)', border: '1.5px solid rgba(245,240,234,0.55)', borderRadius: '3px' }} />
-            </div>
-          </div>
+          {project.url ? (
+            <>
+              <LivePreview url={project.url} />
+              {/* Colour tint */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{ background: `${project.scrimColor}55`, mixBlendMode: 'multiply' }}
+              />
+            </>
+          ) : (
+            <>
+              <div className="absolute inset-0 opacity-[0.07]"
+                style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+              <span className="absolute bottom-4 right-5 sm:bottom-6 sm:right-8 font-epilogue font-black leading-none select-none"
+                style={{ fontSize: 'clamp(60px, 10vw, 120px)', color: '#F5F0EA', opacity: 0.1, letterSpacing: '-0.06em' }}>
+                {project.id}
+              </span>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="flex flex-col items-center gap-2" style={{ opacity: 0.14 }}>
+                  <div style={{ width: 'clamp(80px, 12vw, 140px)', height: '2px', background: 'rgba(245,240,234,0.9)', borderRadius: '1px' }} />
+                  <div style={{ width: 'clamp(60px, 9vw, 100px)', height: '1px', background: 'rgba(245,240,234,0.7)', borderRadius: '1px' }} />
+                  <div style={{ width: 'clamp(40px, 6vw, 70px)',  height: '1px', background: 'rgba(245,240,234,0.5)', borderRadius: '1px' }} />
+                  <div className="mt-1" style={{ width: 'clamp(44px, 7vw, 80px)', height: 'clamp(28px, 4vw, 48px)', border: '1.5px solid rgba(245,240,234,0.55)', borderRadius: '3px' }} />
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
 

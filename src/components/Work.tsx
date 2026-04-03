@@ -8,7 +8,7 @@ const projects = [
     title: 'Lustro',
     titleItalic: 'Brand & Web',
     description:
-      'Brand identity and web presence for a luxury shoe restoration service targeting high-end clientele in Los Angeles. Positioning a master cobbler from $8 mall service to $40–45 bespoke craft — built around story, trust, and a content-led acquisition strategy.',
+      'Brand identity and web presence for a luxury shoe restoration service targeting high-end clientele in Los Angeles. Built around story, trust, and a content-led acquisition strategy.',
     tags: ['Brand Identity', 'Next.js', 'Content Strategy'],
     backplateColor: '#1E2D3A',
     scrimColor: '#0e1928',
@@ -22,11 +22,11 @@ const projects = [
   },
   {
     id: '02',
-    title: 'Xiomara',
-    titleItalic: 'Case Study',
+    title: 'Suko',
+    titleItalic: 'Fitness Brand',
     description:
-      'Concept UI for a women\'s wellness coaching platform — designed to carry visitors from curiosity to commitment. Editorial-style typography, a four-pillar content structure, and a mobile-first layout built entirely in HTML and CSS.',
-    tags: ['HTML', 'CSS', 'Concept UI'],
+      'Concept UI for a women\'s wellness coaching platform — designed to carry visitors from curiosity to commitment. Editorial-style typography, a four-pillar content structure, and a mobile-first layout built with Next.js.',
+    tags: ['Next.JS', 'Concept UI'],
     backplateColor: '#4A7B9D',
     scrimColor: '#2a4a61',
     tagColor: 'rgba(30,45,58,0.18)',

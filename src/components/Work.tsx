@@ -17,14 +17,16 @@ const projects = [
     visualBg: 'linear-gradient(135deg, #0e1d29 0%, #1E2D3A 28%, #2a4a61 65%, #4A7B9D 100%)',
     align: 'left' as const,
     year: '2026',
+    url: 'https://github.com/gabriela-chirinos/Lustro_Project' as string | null,
+    ctaLabel: 'View on GitHub',
   },
   {
     id: '02',
-    title: 'Reservia',
-    titleItalic: 'Layout & Craft',
+    title: 'Xiomara',
+    titleItalic: 'Case Study',
     description:
-      'Responsive hotel reservation interface built in pure HTML and CSS — no frameworks. Focused on clean layout architecture, mobile-first design, and pixel-accurate implementation from a Figma spec.',
-    tags: ['HTML', 'CSS', 'Responsive'],
+      'Concept UI for a women\'s wellness coaching platform — designed to carry visitors from curiosity to commitment. Editorial-style typography, a four-pillar content structure, and a mobile-first layout built entirely in HTML and CSS.',
+    tags: ['HTML', 'CSS', 'Concept UI'],
     backplateColor: '#4A7B9D',
     scrimColor: '#2a4a61',
     tagColor: 'rgba(30,45,58,0.18)',
@@ -32,6 +34,8 @@ const projects = [
     visualBg: 'linear-gradient(140deg, #18384f 0%, #4A7B9D 38%, #7dc0e0 70%, #cce7f5 100%)',
     align: 'right' as const,
     year: '2025',
+    url: 'https://gabriela-chirinos.github.io/fitnessCoach_casestudy/' as string | null,
+    ctaLabel: 'View Case Study',
   },
   {
     id: '03',
@@ -47,6 +51,8 @@ const projects = [
     visualBg: 'linear-gradient(130deg, #a85d47 0%, #D4907A 34%, #eaaa88 66%, #F5F0EA 100%)',
     align: 'left' as const,
     year: '2026',
+    url: null as string | null,
+    ctaLabel: 'Coming Soon',
   },
 ]
 
@@ -163,7 +169,7 @@ const illustrations = {
 }
 
 // ── Desktop full-bleed card ───────────────────────────────────────────────────
-function DesktopCard({ project }: { project: (typeof projects)[0] }) {
+function DesktopCard({ project }: { project: (typeof projects)[number] }) {
   const isRight = project.align === 'right'
   const Illustration = illustrations[project.id as keyof typeof illustrations]
   const isLight = project.id === '03' // Obsidian has light bg
@@ -184,7 +190,8 @@ function DesktopCard({ project }: { project: (typeof projects)[0] }) {
   return (
     <div
       className="work-item reveal relative overflow-hidden group"
-      style={{ minHeight: '640px' }}
+      style={{ minHeight: '640px', cursor: project.url ? 'pointer' : 'default' }}
+      onClick={() => project.url && window.open(project.url, '_blank', 'noopener,noreferrer')}
     >
       {/* ── Full-bleed background gradient ── */}
       <div className="absolute inset-0" style={{ background: project.visualBg }} />
@@ -330,13 +337,25 @@ function DesktopCard({ project }: { project: (typeof projects)[0] }) {
 
         {/* Bottom row */}
         <div className={`flex items-center gap-8 ${isRight ? 'flex-row-reverse' : ''}`}>
-          <a
-            href="#"
-            className="arrow-link inline-flex items-center gap-2 font-epilogue font-bold uppercase"
-            style={{ fontSize: '11px', letterSpacing: '0.2em', color: ctaColor }}
-          >
-            Case Study <span className="arrow">→</span>
-          </a>
+          {project.url ? (
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="arrow-link inline-flex items-center gap-2 font-epilogue font-bold uppercase"
+              style={{ fontSize: '11px', letterSpacing: '0.2em', color: ctaColor }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {project.ctaLabel} <span className="arrow">→</span>
+            </a>
+          ) : (
+            <span
+              className="inline-flex items-center gap-2 font-epilogue font-bold uppercase"
+              style={{ fontSize: '11px', letterSpacing: '0.2em', color: textDim, opacity: 0.5 }}
+            >
+              {project.ctaLabel}
+            </span>
+          )}
           <div style={{ width: '40px', height: '1px', background: dividerColor }} />
           <span
             className="font-epilogue"
@@ -351,7 +370,7 @@ function DesktopCard({ project }: { project: (typeof projects)[0] }) {
 }
 
 // ── Mobile / tablet card ──────────────────────────────────────────────────────
-function MobileCard({ project }: { project: (typeof projects)[0] }) {
+function MobileCard({ project }: { project: (typeof projects)[number] }) {
   const isRight = project.align === 'right'
 
   return (
@@ -359,6 +378,8 @@ function MobileCard({ project }: { project: (typeof projects)[0] }) {
       className={`work-item reveal relative flex flex-col sm:flex-row sm:items-stretch ${
         isRight ? 'sm:flex-row-reverse' : ''
       } gap-0`}
+      style={{ cursor: project.url ? 'pointer' : 'default' }}
+      onClick={() => project.url && window.open(project.url, '_blank', 'noopener,noreferrer')}
     >
       {/* Visual panel */}
       <div className="work-visual relative w-full sm:flex-1 min-h-[200px] sm:min-h-[380px] md:min-h-[460px]">
@@ -402,9 +423,25 @@ function MobileCard({ project }: { project: (typeof projects)[0] }) {
               style={{ background: project.tagColor, color: project.tagTextColor }}>{tag}</span>
           ))}
         </div>
-        <a href="#" className="arrow-link inline-flex items-center gap-2 font-epilogue font-bold uppercase tracking-widest text-xs" style={{ color: 'rgba(245,240,234,0.8)' }}>
-          Case Study <span className="arrow text-base">→</span>
-        </a>
+        {project.url ? (
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="arrow-link inline-flex items-center gap-2 font-epilogue font-bold uppercase tracking-widest text-xs"
+            style={{ color: 'rgba(245,240,234,0.8)' }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {project.ctaLabel} <span className="arrow text-base">→</span>
+          </a>
+        ) : (
+          <span
+            className="inline-flex items-center gap-2 font-epilogue font-bold uppercase tracking-widest text-xs"
+            style={{ color: 'rgba(245,240,234,0.35)' }}
+          >
+            {project.ctaLabel}
+          </span>
+        )}
       </div>
     </div>
   )

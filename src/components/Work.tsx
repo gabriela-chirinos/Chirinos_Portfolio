@@ -219,10 +219,15 @@ function DesktopCard({ project }: { project: (typeof projects)[number] }) {
   const ctaColor       = isLight ? 'rgba(30,45,58,0.75)'  : 'rgba(245,240,234,0.8)'
   const ghostId        = isLight ? 'rgba(30,45,58,0.05)'  : 'rgba(245,240,234,0.038)'
 
-  // Gradient scrim direction
-  const scrimGradient = isRight
-    ? `linear-gradient(to left, transparent 0%, ${project.scrimColor}dd 52%, ${project.scrimColor} 100%)`
-    : `linear-gradient(to right, transparent 0%, ${project.scrimColor}dd 52%, ${project.scrimColor} 100%)`
+  // Gradient scrim — for live-preview cards, cover the TEXT side so the iframe shows clean.
+  // For illustration cards, cover the visual side (original behaviour).
+  const scrimGradient = project.url
+    ? isRight
+      ? `linear-gradient(to left, ${project.scrimColor} 0%, ${project.scrimColor}ee 44%, transparent 100%)`
+      : `linear-gradient(to right, ${project.scrimColor} 0%, ${project.scrimColor}ee 44%, transparent 100%)`
+    : isRight
+      ? `linear-gradient(to left, transparent 0%, ${project.scrimColor}dd 52%, ${project.scrimColor} 100%)`
+      : `linear-gradient(to right, transparent 0%, ${project.scrimColor}dd 52%, ${project.scrimColor} 100%)`
 
   return (
     <div
@@ -248,21 +253,15 @@ function DesktopCard({ project }: { project: (typeof projects)[number] }) {
         </>
       )}
 
-      {/* ── Colour tint so iframe blends with brand palette ── */}
-      {project.url && (
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: `${project.scrimColor}55`, mixBlendMode: 'multiply' }}
-        />
+      {/* ── Scanlines + grid — only for illustration cards, skip for live previews ── */}
+      {!project.url && (
+        <>
+          <div className="absolute inset-0 pointer-events-none"
+            style={{ backgroundImage: 'repeating-linear-gradient(0deg, rgba(0,0,0,0.04) 0px, rgba(0,0,0,0.04) 1px, transparent 1px, transparent 5px)' }} />
+          <div className="absolute inset-0 pointer-events-none"
+            style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)', backgroundSize: '52px 52px' }} />
+        </>
       )}
-
-      {/* ── Scanlines ── */}
-      <div className="absolute inset-0 pointer-events-none"
-        style={{ backgroundImage: 'repeating-linear-gradient(0deg, rgba(0,0,0,0.04) 0px, rgba(0,0,0,0.04) 1px, transparent 1px, transparent 5px)' }} />
-
-      {/* ── Fine grid ── */}
-      <div className="absolute inset-0 pointer-events-none"
-        style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)', backgroundSize: '52px 52px' }} />
 
       {/* ── Gradient scrim — text side ── */}
       <div className="absolute inset-0 pointer-events-none" style={{ background: scrimGradient }} />
@@ -433,14 +432,7 @@ function MobileCard({ project }: { project: (typeof projects)[number] }) {
       <div className="work-visual relative w-full sm:flex-1 min-h-[200px] sm:min-h-[380px] md:min-h-[460px]">
         <div className="work-visual-inner absolute inset-0" style={{ background: project.visualBg }}>
           {project.url ? (
-            <>
-              <LivePreview url={project.url} />
-              {/* Colour tint */}
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{ background: `${project.scrimColor}55`, mixBlendMode: 'multiply' }}
-              />
-            </>
+            <LivePreview url={project.url} />
           ) : (
             <>
               <div className="absolute inset-0 opacity-[0.07]"

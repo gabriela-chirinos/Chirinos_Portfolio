@@ -249,7 +249,7 @@ export default function Work() {
             style={{ fontSize: 'clamp(31px, 5vw, 72px)', letterSpacing: '-0.04em' }}
           >
             Curated{' '}
-            <span className="playfair-italic">Work</span>
+            <span className="playfair-italic">Archive</span>
           </h2>
         </div>
       </div>

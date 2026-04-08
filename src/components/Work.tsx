@@ -248,7 +248,7 @@ export default function Work() {
             className="font-epilogue font-black text-slate-navy leading-tight"
             style={{ fontSize: 'clamp(31px, 5vw, 72px)', letterSpacing: '-0.04em' }}
           >
-            Selected{' '}
+            Curated{' '}
             <span className="playfair-italic">Work</span>
           </h2>
         </div>

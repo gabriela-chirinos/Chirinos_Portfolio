@@ -93,7 +93,7 @@ export default function Philosophy() {
               letterSpacing: '-0.02em',
             }}
           >
-            Simplicity. It's the standard.
+           Simple intentional design
           </p>
         </div>
 

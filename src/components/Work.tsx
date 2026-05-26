@@ -37,14 +37,6 @@ const projects: Project[] = [
     image: '/projects/screenshots/panbakery.png',
     url: 'https://gabriela-chirinos.github.io/japaneseBakery/',
   },
-  {
-    id: '04',
-    title: 'ACES Heating & Cooling',
-    year: '2026',
-    tags: ['HTML', 'CSS', 'JavaScript', 'Client Mockup'],
-    image: '/projects/screenshots/ace_heating.png',
-    url: 'https://gabriela-chirinos.github.io/ace_heating_and_cooling/',
-  },
 ]
 
 // ── Coming Soon screen placeholder ────────────────────────────────────────────
